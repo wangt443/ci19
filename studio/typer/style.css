@@ -1,0 +1,273 @@
+#cursor {
+  animation: blinker 1s step-end infinite; 
+  you can change 'step-end' to 'linear' for smooth transition
+}
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+#container {
+/*  background-color: #efefef;
+*/width: 1000px;
+height: 1000px;
+  padding: 50px;
+  margin: 50px auto;
+  word-wrap: break-word;
+  text-align:center;
+}
+
+.inner {
+ 	height:300px;
+	width: 300px;
+	position: absolute;
+/*	margin:10px;
+*/	display: block;
+}
+
+#sky.jpg{
+	height: 300px;
+	width: 300px;
+	border: 1px;
+	margin:10px;
+	position: relative;
+	left: 100px;
+	top: 40px;
+	opacity: 0.5;
+}
+.blue{
+	height: 1000px;
+	width: 1000px;
+	border: 1px;
+	margin:10px;
+	position: relative;
+	left: 50px;
+	top: 200px;
+	opacity: 0.5;
+}
+.green{
+	height:1000px;
+	width: 1000px;
+	position: absolute;
+	left:800px;
+	top:100px;
+	opacity: 0.5;
+}
+.red{ 
+	height: 700px;
+	width: 1000px;
+	position: absolute;
+	left:-500px;
+	top: 170px;
+	opacity: 0.5;
+ }
+
+ .white{ 
+ 	height: 1000px;
+ 	width: 1000px;
+ 	position: absolute;
+ 	left: -800px;
+ 	top: 900px;
+ 	opacity: 0.5;
+ }
+
+ .pink{
+ 	height: 1000px;
+ 	width: 1000px;
+ 	position: absolute;
+ 	right: 800px;
+ 	top: 500px;
+ 	opacity: 0.5;
+ }
+
+ .violet { 
+ 	height: 1000px;
+ 	width: 1000px;
+ 	position: absolute;
+ 	left: 400px;
+ 	bottom: -2000px; 
+ 	opacity: 0.5;
+
+ }
+#video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+}
+
+.sunset{ 
+height: 100px;
+width: 100px;
+min-width: 50%;
+min-height: 50%;
+top: 70px;
+right: 90px;
+position: absolute;
+}
+
+.floral{ 
+height: 2000px;
+width: 1500px;
+top: 600px;
+right: 80px;
+position: absolute;
+opacity: 0.5;
+}
+
+.trees{ 
+height: 2000px;
+width: 2000px;
+top: 100px;
+right: 10px;
+position: absolute;
+opacity: 0.5;
+}
+
+.steps{ 
+height: 2500px;
+width: 2500px;
+top: 100px;
+right: 80px;
+opacity: 0.5;
+}
+
+.up { 
+height: 700px;
+width: 700px;
+top: 100px;
+right: 40px;
+position: absolute;
+opacity: 0.5;
+}
+
+.home{ 
+height:1000px;
+width: 2000px;
+left: 900px;
+top: 1550px;
+position: absolute;
+opacity: 0.5;
+}
+
+.end { 
+height: 1200px;
+width: 1900px;
+right: 690px; 
+top: 800px;
+position: absolute;
+opacity: 0.5;
+}
+
+video{
+	position: absolute;
+	height: auto; 
+	width: auto;
+	/*top: 90px;
+	left: 90px;*/
+}
+
+video-2{
+	position: absolute;
+	height: 1500px; 
+	width: 1500px;
+	bottom: 400px;
+	left: 300px;
+	opacity: 0.5;
+}
+
+.yellow{ 
+height: 650px;
+width: 650px;
+bottom: -2300px;
+right: -640px;
+position:absolute;
+opacity: 0.5;
+}
+
+.k{
+	height: 1000px;
+	width: 1000px;
+	top: 80px;
+	left: -2000px;
+	position: absolute;
+	opacity: 0.5;
+}
+
+.j{ 
+height: 500px; 
+width: 800px;
+top: 1000px;
+left: -1600px;
+position: absolute;
+opacity: 0.5; 
+}
+
+video-3{ 
+ }
+
+.martinique{ 
+top: 100px;
+left: -2520px;
+width: auto;
+height: auto;
+position: absolute;
+}
+
+.quiet{
+	top: 1200px;
+	left: 5px;
+	height: 500px;
+	width: 800px;
+	position:absolute;
+	opacity: 0.5;
+}
+
+.lovely{
+top: 500px;
+right: 400px;
+height: 500px;
+width: 850px;
+position: absolute;
+opacity: 0.5;
+
+}
+
+.green2{ 
+top: 1300px;
+right: 1200px;
+width: 1000px;
+height: 1000px;
+position: absolute;
+opacity: 0.5;
+}
+
+.calm{ 
+top: 250px;
+right: -290px;
+width: auto;
+height: auto;
+position: absolute;
+}
+
+.nice{
+	top: 200px;
+	right: 200px;
+	width: 300px;
+	height: 0px;
+	position: absolute;
+	opacity: 0.5;
+}
+
+.i{ 
+ bottom: -1800px;
+ right:-550px;
+ width: 900px;
+ height:700px;
+ position: absolute;
+ opacity: 0.5;
+}
+

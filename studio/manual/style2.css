@@ -1,0 +1,30 @@
+body { 
+	font-family: 'Avenir'; 
+	margin: 0;
+	background: white;
+	font-size: 20px;
+}
+
+.container {
+	display: grid; 
+	grid-gap: 10px;
+	grid-template-columns: 1fr 1fr;
+	padding:1em;
+}
+
+.item1{
+	margin-right:10px;
+}
+
+h1 {
+	font-size: 55px;
+	font-style: italic;
+	padding: 1em;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+  	grid-template-columns: 1fr;
+  }
+}
