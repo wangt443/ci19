@@ -1,0 +1,22 @@
+body{
+/*	background-color: ##FFF0F5;*/
+	font-family: arial, sans-serif, bold; 
+	font-size: 40px; 
+	line-height: 10px;
+}
+
+#container2{
+	width: 200px;
+	height: 200px;
+	margin: 0;
+	display: inline-block;
+	/*background-color: red;*/
+
+}
+#container1{
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+/*	background-color: blue;
+*/
+}

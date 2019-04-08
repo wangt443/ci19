@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Clothing Collection</title>
+</head>
+
+<body>
+    <div class=container>
+        <div id="left">
+            <ul id="mainListContainer"> </ul>
+            <ul id="subListContainer" class="subList"> </ul>
+            <button id="back">back</button>
+        </div>
+        <div id="right">
+            <img id="image"/>
+            <p id="comment"></p>
+        </div>
+    </div>
+
+
+    <script>
+        var clothingTypes = ['hats', 'tops', 'sweaters', 'pants', 'shorts', 'shoes', 'scarves', 'bags'];
+        var json = '{"hats": {"test1":"https://i2.wp.com/webadubradio.fr/wp-content/uploads/2019/03/webadubradio.fr-niska-dans-loeil-du-cyclone-niska.jpg?fit=758%2C485&ssl=1","test2":"https://static.booska-p.com/images/news/en-cours-kaaris-annonce-le-1er-extrait-de-son-nouvel-album-649.jpg"}, "tops": {}, "sweaters": {}, "pants": {}, "shorts": {}, "shoes": {}, "scarves": {}, "bags": {}}';
+        var mainListContainer = document.getElementById('mainListContainer');
+        var subListContainer = document.getElementById('subListContainer');
+
+        var backButton = document.getElementById("back");
+        backButton.onclick = function () {
+            showMainContainer();
+        }
+        backButton.style.display = "none";
+
+        function createHomepage() {
+            for (var i = 0; i < clothingTypes.length; i++) {
+                var name = clothingTypes[i];
+                var p = document.createElement('li');
+                p.classList.add('clothingTypes');
+                p.innerHTML = name;
+                mainListContainer.appendChild(p);
+            }
+        }
+
+        createHomepage();
+        showMainContainer()
+
+        var clothingTypeElems = document.getElementsByClassName('clothingTypes');
+        var subListHTML = document.getElementsByClassName('subList');
+        // console.log(clothingTypeElems);
+
+        for (var i = 0; i < clothingTypeElems.length; i++) {
+            el = clothingTypeElems[i];
+
+            el.addEventListener('click', function (e) {
+                var innerText = e.srcElement.innerText;
+
+                //clear containers
+                showSubContainer();
+
+                //show JSON list of the given el
+                showJSONList(innerText);
+            })
+
+        }
+
+        function showMainContainer() {
+            subListContainer.innerHTML = null;
+            mainListContainer.style.display = "block";
+            subListContainer.style.display = "none";
+            backButton.style.display = "none";
+        }
+
+        function showSubContainer() {
+            mainListContainer.style.display = "none";
+            subListContainer.style.display = "block";
+            backButton.style.display = "block";
+        }
+
+        function showJSONList(element) {
+            var subList = JSON.parse(json)[element];
+            for (key in subList) {
+                p = document.createElement('li');
+                p.classList.add('subList');
+                p.innerHTML = key;
+                p.addEventListener('mouseover', function (e) {
+                    showPicture(e.srcElement.innerText, subList[e.srcElement.innerText]);
+                });
+                p.addEventListener('mouseout', function (e) {
+                    hidePicture();
+                });
+                subListContainer.appendChild(p);
+            }    
+
+        }
+
+        function showPicture(comment, imageSrc){
+            document.getElementById('image').style.display = "block";
+            document.getElementById('comment').style.display = "block";
+            document.getElementById('image').src = imageSrc;
+            document.getElementById('comment').innerText = comment;
+        }
+
+        function hidePicture(){
+            document.getElementById('image').style.display = "none";
+            document.getElementById('comment').style.display = "none";
+            document.getElementById('image').src = "#";
+            document.getElementById('comment').innerText = "";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Clothing Collection</title>
+</head>
+
+<body>
+    <div id ="left">
+        <div id="mainListContainer"> </div>
+        <div id="subListContainer"> </div>
+        <p id="back">back</p>
+    </div>
+    <div div="right">
+        <img id="image"/>
+    </div>
+
+
+    <script>
+        var clothingTypes = ['hats', 'tops', 'jackets', 'sweaters','dresses', 'pants', 'shorts', 'shoes', 'scarves', 'bags'];
+        var json = '{"hats": ["test1","test2"], "tops": [], "sweaters": [], "pants": [], "shorts": [], "shoes": ["Nike Air Max 98", "Adidas Yung-96", "Adidas Superstars", "Chelsea Boots", "Timberlands", "Calvin Klein Heels"], "scarves": [], "bags": []}';
+
+        var mainListContainer = document.getElementById('mainListContainer');
+        var subListContainer = document.getElementById('subListContainer');
+
+        var backButton = document.getElementById("back");
+        document.body.appendChild(backButton);
+        backButton.onclick = function () {
+            showMainContainer();
+        }
+        backButton.style.display = "none";
+
+        function createHomepage() {
+            for (var i = 0; i < clothingTypes.length; i++) {
+                var name = clothingTypes[i];
+                var p = document.createElement('p');
+                p.classList.add('clothingTypes');
+                p.innerHTML = name;
+                mainListContainer.appendChild(p);
+            }
+        }
+
+
+
+        createHomepage();
+
+        var clothingTypeElems = document.getElementsByClassName('clothingTypes');
+        // console.log(clothingTypeElems);
+
+        for (var i = 0; i < clothingTypeElems.length; i++) {
+            el = clothingTypeElems[i];
+
+            el.addEventListener('click', function (e) {
+                var innerText = e.srcElement.innerText;
+                console.log('innerText is: ', innerText);
+
+                //clear containers
+                showSubContainer();
+
+                //show JSON list of the given el
+                showJSONList(innerText);
+            })
+
+            // function displayimage(json){
+            // 	var image = document.createElement
+            // }
+            // for(var i=0; i < url.length; i+=1){
+            // 	var hats = document.createElement("h1"); 
+            // 	hats.innerHTML =json[i].hat; 
+            // 	hats.counter =i; 
+            // 	document.body.appendChild(hats); 
+            // 	hats.onmouseover = function(event){
+            // 		image.setAttribute("src", json[event.target.counter].url);
+            // 		document.body.appendChild(image);
+            // 	}
+
+        }
+
+        function showMainContainer() {
+            subListContainer.innerHTML = null;
+            mainListContainer.style.display = "block";
+            subListContainer.style.display = "none";
+            backButton.style.display = "none";
+        }
+
+        function showSubContainer() {
+            mainListContainer.style.display = "none";
+            subListContainer.style.display = "block";
+            backButton.style.display = "block";
+        }
+
+        function showJSONList(element) {
+            var subList = JSON.parse(json)[element];
+            for (var i = 0; i < subList.length; i++) {
+                var name = subList[i];
+                var p = document.createElement('p');
+                p.classList.add('subList');
+                p.innerHTML = name;
+                subListContainer.appendChild(p);
+            }
+
+
+        }
+    </script>
+
+</body>
+
+</html>

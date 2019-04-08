@@ -1,0 +1,14 @@
+body {
+  font-family: arial;
+  font-size: 20px;
+  margin: 20px;
+}
+
+a.hat:hover{ 
+  background-image: url("hat2.jpg");
+  height: 100%;
+  margin:0; 
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
