@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Collection 3</title>
+</head>
+<body>
+<script>
+var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata.json";
+fetch(url)
+	.then(function(data){return data.json();})
+	.then(function(json){sortData(json);})
+
+function sortData(json){
+	var hats = json.hats;
+
+	var pop = document.createElement("h1");
+	document.body.appendChild(pop);
+	pop.style.postion = "absolute";
+
+	for(var i = 0; i < cities.length; i+=1){
+		var city = document.createElement("h1");
+		city.innerHTML = cities[i].city;
+		city.counter = i;
+		document.body.appendChild(city);
+		city.onmouseover = function(event) {
+			console.log(event);
+			pop.innerHTML = cities[event.target.counter].population;
+			// pop.style.top = event.target.style.top;
+			// pop.style.left = event.target.style.left;
+
+		}
+	}
+}
+</script>
+</body>
+</html>

@@ -18,6 +18,12 @@
 
 
     <script>
+    	var url "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata.json"
+    	fetch(url)
+    		.then(function(response){return response.json();})
+    		.then(function(json){ buildPage(json); })
+
+    	function buildPage(data) {
         var clothingTypes = ['hats', 'tops', 'jackets', 'sweaters','dresses', 'pants', 'shorts', 'shoes', 'scarves', 'bags'];
         var json = '{"hats": ["test1","test2"], "tops": [], "sweaters": [], "pants": [], "shorts": [], "shoes": ["Nike Air Max 98", "Adidas Yung-96", "Adidas Superstars", "Chelsea Boots", "Timberlands", "Calvin Klein Heels"], "scarves": [], "bags": []}';
 
@@ -31,7 +37,7 @@
         }
         backButton.style.display = "none";
 
-        function createHomepage() {
+        // function createHomepage() {
             for (var i = 0; i < clothingTypes.length; i++) {
                 var name = clothingTypes[i];
                 var p = document.createElement('p');
@@ -41,7 +47,7 @@
             }
         }
 
-
+}
 
         createHomepage();
 
