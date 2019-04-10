@@ -5,29 +5,28 @@
 </head>
 <body>
 <script>
-var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata.json";
+var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata%20(1).json";
 fetch(url)
 	.then(function(data){return data.json();})
-	.then(function(json){sortData(json);})
+	.then(function(json){displayimage(json);})
 
-function sortData(json){
-	var hats = json.hats;
+function find_in_object(my_object, myc_criteria){
 
-	var pop = document.createElement("h1");
-	document.body.appendChild(pop);
-	pop.style.postion = "absolute";
+	return my_object.filter(function(obj) {
+		return obj[c] == my_criteria[c]; 
+	});
+}
+function displayimage(json){
+	var image = document.createElement("img");
 
-	for(var i = 0; i < cities.length; i+=1){
-		var city = document.createElement("h1");
-		city.innerHTML = cities[i].city;
-		city.counter = i;
-		document.body.appendChild(city);
-		city.onmouseover = function(event) {
-			console.log(event);
-			pop.innerHTML = cities[event.target.counter].population;
-			// pop.style.top = event.target.style.top;
-			// pop.style.left = event.target.style.left;
-
+	for(var i = 0; i < url.length; i+=1){
+		var hats = document.createElement("h1");
+		.innerHTML = json[i].hats;
+		hats.counter = i;
+		document.body.appendChild(names);
+		names.onmouseover = function(event) {
+			image.setAttribute("src", json[event.target.counter].url);
+			document.body.appendChild(image); 
 		}
 	}
 }

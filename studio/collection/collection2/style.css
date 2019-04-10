@@ -21,8 +21,8 @@ button{
 li{
     /* height: 50px; */
 /*    min-height: 60px;*/
-    word-wrap: break-word;
-    height: auto;
+/*    word-wrap: break-word;
+*/    height: auto;
 }
 
 #title{
@@ -30,8 +30,9 @@ li{
 }
 
 #image{
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    position: fixed;
     background-size: cover;
 /*    position: absolute;
 *//*    margin-left: auto;
@@ -40,12 +41,12 @@ li{
 
 #left{    
 /*    display: flex;
-*/    flex-direction: column;
+*/    /*flex-direction: column;*/
 }
 
 #right{
 /*    display: flex;*/    
-    flex-direction: column;
+  /*  flex-direction: column;*/
     width: 100%;
     padding-top: 50px;
     text-align: center;
@@ -66,7 +67,7 @@ li{
     padding: 50px;
     border-radius: 10px;
 /*    display: inline-block;
-*/    /*background-color: blue;*/
+*/   /* background-color: blue;*/
 }
 
 .subList.active{

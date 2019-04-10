@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Collection 4</title>
+</head>
+<body>
+<script>
+var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata%20(1).json";
+fetch(url)
+	.then(function(data){return data.json();})
+	.then(function(json){sortData(json);})
+function sortData(json){
+	// console.log(json);
+	var array = json.clothing;
+
+	console.log(array);
+
+	//cali is going to be an array
+	//on each element ask .state == "California"
+	var hats = array.filter(function(el){ return el.hat == "Hats"; });
+	var tops = array.filter(function(entry){ return memory == "Tops"; });
+	var bottoms = array.filter(function(a){ return a.memory == "Bottoms"; });
+
+	console.log(hats);
+	console.log(bottoms);
+	console.log(tops);
+
+
+//////////////////////////
+
+//sort DOES modify the original array
+//function compare(a, b) {
+//   if (a is less than b by some ordering criterion) {
+//     return -1;
+//   }
+//   if (a is greater than b by the ordering criterion) {
+//     return 1;
+//   }
+//   // a must be equal to b
+//   return 0;
+// }
+	// array.sort(function(a,b){
+	// 	if (a.clothing < b.clothing) return -1;
+	// 	if (b.clothing < a.city) return 1;
+	// 	return 0;
+	// });
+
+	// console.log(array);
+
+}
+</script>
+</body>
+</html>
