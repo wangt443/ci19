@@ -6,29 +6,65 @@
 <body>
 <script>
 var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata%20(1).json";
+
 fetch(url)
 	.then(function(data){return data.json();})
-	.then(function(json){displayimage(json);})
+	.then(function(json){sortData(json);})
+function sortData(json){
+	// console.log(json);
+	var array = json;
 
-function find_in_object(my_object, myc_criteria){
+	// console.log(array);
 
-	return my_object.filter(function(obj) {
-		return obj[c] == my_criteria[c]; 
-	});
-}
-function displayimage(json){
-	var image = document.createElement("img");
+	//cali is going to be an array
+	//on each element ask .state == "California"
+	// var h = array.filter(function(el){ return el.category == "Hat"; });
+	// var t = array.filter(function(entry){ return entry.category == "Top"; });
 
-	for(var i = 0; i < url.length; i+=1){
-		var hats = document.createElement("h1");
-		.innerHTML = json[i].hats;
-		hats.counter = i;
-		document.body.appendChild(names);
-		names.onmouseover = function(event) {
-			image.setAttribute("src", json[event.target.counter].url);
-			document.body.appendChild(image); 
-		}
+	// console.log(h);
+	// console.log(t);
+	for(var i = 0; i < array.length; i++){
+		// var hh = array[i].category;
+		// var appendHats = document.createElement("li");
+		// appendHats.innerHTML = hh;
+
+		var blabla = array.filter(function(su){
+			return su.category == "Hats";
+		});
+		console.log(blabla);
+
+		var hh = blabla[i].category;
+		var hhCreate = document.createElement("li");
+		hhCreate.innerHTML = hh;
+		document.body.appendChild(hhCreate);
+		// var hatsBrand = blabla[i].brand;
+		// console.log(hatsBrand);
+		// document.body.appendChild(hatsItemNames);
+		// document.body.appendChild(blabla);
+		// document.body.appendChild(appendHats);
 	}
+	
+
+//////////////////////////
+
+//sort DOES modify the original array
+//function compare(a, b) {
+//   if (a is less than b by some ordering criterion) {
+//     return -1;
+//   }
+//   if (a is greater than b by the ordering criterion) {
+//     return 1;
+//   }
+//   // a must be equal to b
+//   return 0;
+// }
+	// array.sort(function(a,b){
+	// 	if (a.city < b.city) return -1;
+	// 	if (b.city < a.city) return 1;
+	// 	return 0;
+	// });
+
+
 }
 </script>
 </body>
