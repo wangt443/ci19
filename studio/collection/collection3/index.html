@@ -5,7 +5,7 @@
 </head>
 <body>
 <script>
-var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata%20(1).json";
+var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/csvjson.json";
 
 fetch(url)
 	.then(function(data){return data.json();})
@@ -33,7 +33,7 @@ function sortData(json){
 		});
 		console.log(blabla);
 
-		var hh = blabla[i].category;
+		var hh = blabla[i].itemname;
 		var hhCreate = document.createElement("li");
 		hhCreate.innerHTML = hh;
 		document.body.appendChild(hhCreate);
