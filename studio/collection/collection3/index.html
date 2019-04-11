@@ -5,7 +5,8 @@
 	<script src = "https://code.jquery.com/jquery-3.3.0.js"></script>
 </head>
 <body>
-	<!-- <div id = "Mmemory"></div> -->
+	<button id="back">back</button>
+	<!-- <div id = "Memory"></div> -->
 	<style>
 		#mem1{
 			position: absolute;
@@ -30,14 +31,14 @@
 		}
 
 		body{ 
-		font-family: arial;
+		font-family: arial, sans-serif, bold;
 		font-size: 20px;
 		}
 	</style>
 
 <ul id="menu"></ul>
-
 <script>
+
 
 var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/csvjson.json";
 
@@ -79,20 +80,47 @@ function secondPage(category) {
 	console.log(thisData);
 
 	// create content
-	for(var i = 0; i < thisData.length; i++) {
+	for(var i = 0; i < thisData.length; i++){
+		var hats = array.filter(function(su){
+			return su.category == "hats"; 
+		}); 
 		console.log(thisData[i]);
 
 		thisData[i].where 
 
+
+		var hh = thisdata[i].name;
+		var hhCreate = document.createElement("li");
+		hhCreate.innerHTML = hh;
+		document.body.appendChild(hhCreate);
+
+		var mem = document.createElement("h1");
+		document.body.appendChild(mem).setAttribute("id","mem1");;
+
+		var img = document.createElement("img");
+		document.body.appendChild(imgg).setAttribute("id","hat1");
+
+		hhCreate.counter = i;
+
+		hhCreate.onmouseover = function(event){
+			mem.innerHTML = blabla[event.target.counter].memory;
+				document.getElementById("hat1").setAttribute("src","https://wangt443.github.io/ci19/studio/collection/hats/1.jpg");
+		}
+
+		hhCreate.onmouseout = function(event){
+			mem.innerHTML = null;
+				document.getElementById("hat1").setAttribute("src","");
+
+		}
+
 	}
-
-
-        var backButton = document.getElementById("back");
-        backButton.onclick = function () {
-            showMainContainer();
+ 
+ var backButton = document.getElementById("back");
+    	backButton.onclick = backtoMain () {
+        showMainContainer();
         }
         backButton.style.display = "none";
-        
+
 	// create the back button
 	// set back button onclick = backToMain
 
@@ -100,6 +128,10 @@ function secondPage(category) {
 }
 
 function backToMain(){
+	hideMainContainer(); 
+	}
+	backButton.style.display = "block";
+
 	// hide that same content here
 
 
