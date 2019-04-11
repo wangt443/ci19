@@ -5,18 +5,18 @@ body{
 	line-height: 10px;
 }
 
-#container2{
+#container{
 	width: 200px;
-	height: 200px;
+	height: 200px
 	margin: 0;
 	display: inline-block;
-	/*background-color: red;*/
+	background-color: red;
 
 }
 #container1{
 	width: 200px;
 	height: 200px;
 	display: inline-block;
-/*	background-color: blue;
-*/
+	background-color: blue;
+
 }

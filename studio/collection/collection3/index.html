@@ -2,48 +2,145 @@
 <html>
 <head>
 	<title>Collection 3</title>
+	<script src = "https://code.jquery.com/jquery-3.3.0.js"></script>
 </head>
 <body>
+	<!-- <div id = "Mmemory"></div> -->
+	<style>
+		#mem1{
+			position: absolute;
+			left: 300px;
+			top:50px;
+			margin:0;
+			padding:0;
+
+		}
+
+		img{
+			position:absolute;
+		/*	height: 100;*/
+			width: 95vw;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			justify-content: center;
+			/*left:200px;
+			top:10px;*/
+			z-index: -1;
+		}
+
+		body{ 
+		font-family: arial;
+		font-size: 20px;
+		}
+	</style>
+
+<ul id="menu"></ul>
+
 <script>
+
 var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/csvjson.json";
+
+var data;
 
 fetch(url)
 	.then(function(data){return data.json();})
-	.then(function(json){sortData(json);})
-function sortData(json){
-	// console.log(json);
-	var array = json;
+	.then(function(json){buildPage(json);})
 
+var categories = [];
+
+function buildPage(array) {
+	data = array;
+	for (var i = 0; i < array.length; i++) {
+		// if this category is not yet inside categories array
+		if (categories.indexOf(array[i].category) === -1) {
+			categories.push(array[i].category);
+		}
+	}
+
+	for(var i = 0; i < categories.length; i++) {
+		var columncategory = document.createElement("li");
+		columncategory.innerHTML = categories[i];
+		(function(index){
+			columncategory.onclick = function(){
+				secondPage(categories[index]);
+			}
+		})(i);
+		document.getElementById("menu").appendChild(columncategory);
+	}
+}
+
+function secondPage(category) {
+	document.getElementById("menu").style.display = "none";
+	// build page with category
+	var thisData = data.filter(function(su){
+			return su.category == category;
+		});
+	console.log(thisData);
+
+	// create content
+	for(var i = 0; i < thisData.length; i++) {
+		console.log(thisData[i]);
+
+		thisData[i].where 
+
+	}
+
+
+        var backButton = document.getElementById("back");
+        backButton.onclick = function () {
+            showMainContainer();
+        }
+        backButton.style.display = "none";
+        
+	// create the back button
+	// set back button onclick = backToMain
+
+
+}
+
+function backToMain(){
+	// hide that same content here
+
+
+	document.getElementById("menu").style.display = "block";
+
+}
+
+function sortData(array){
 	// console.log(array);
-
-	//cali is going to be an array
-	//on each element ask .state == "California"
-	// var h = array.filter(function(el){ return el.category == "Hat"; });
-	// var t = array.filter(function(entry){ return entry.category == "Top"; });
-
-	// console.log(h);
-	// console.log(t);
 	for(var i = 0; i < array.length; i++){
-		// var hh = array[i].category;
-		// var appendHats = document.createElement("li");
-		// appendHats.innerHTML = hh;
-
 		var blabla = array.filter(function(su){
-			return su.category == "Hats";
+			return su.category == "hats";
 		});
 		console.log(blabla);
 
-		var hh = blabla[i].itemname;
+		var hh = blabla[i].name;
 		var hhCreate = document.createElement("li");
 		hhCreate.innerHTML = hh;
 		document.body.appendChild(hhCreate);
-		// var hatsBrand = blabla[i].brand;
-		// console.log(hatsBrand);
-		// document.body.appendChild(hatsItemNames);
-		// document.body.appendChild(blabla);
-		// document.body.appendChild(appendHats);
+
+		var mem = document.createElement("h1");
+		document.body.appendChild(mem).setAttribute("id","mem1");;
+
+		var imgg = document.createElement("img");
+		document.body.appendChild(imgg).setAttribute("id","hat1");
+
+		hhCreate.counter = i;
+
+		hhCreate.onmouseover = function(event){
+			mem.innerHTML = blabla[event.target.counter].memory;
+				document.getElementById("hat1").setAttribute("src","https://wangt443.github.io/ci19/studio/collection/hats/1.jpg");
+		}
+
+		hhCreate.onmouseout = function(event){
+			mem.innerHTML = null;
+				document.getElementById("hat1").setAttribute("src","");
+
+		}
+
+
 	}
-	
 
 //////////////////////////
 
