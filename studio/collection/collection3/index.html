@@ -24,11 +24,14 @@
 		position: absolute;
 		left: 0;
 		margin-left: 10px;
+		font-weight: bold;
 	}
 	#locEl{
 		position: absolute;
 		right: 0;
 		margin-right: 30px;
+		font-weight: bold;
+
 	}
 
 	.secondPgEl {
@@ -48,7 +51,7 @@
 		font-weight: bold; 
 		height: 100px;
     	width: 200px;;
-    	font-size: 30px;
+    	font-size: 20px;
 /*    	border-radius: 10px;
 */    	/*margin-left: auto;
 		margin-right: auto;*/
@@ -86,7 +89,7 @@
 		}
 
 		h1{
-			color: purple;
+			color: black;
 		}
 
 		#menu { 
@@ -96,6 +99,12 @@
 		margin-right: 10px;
 		font-family: arial, sans-serif, bold;
 		}
+
+		#secondpagecontainer { 
+			margin-left: 10px; 
+			margin-right: 10px;
+			padding: 10px;
+		 }
 
 	</style>
 
@@ -136,6 +145,7 @@ function buildPage(array) {
 			}
 		})(i);
 		document.getElementById("menu").appendChild(columncategory);
+
 	}
 }
 
@@ -174,6 +184,7 @@ function secondPage(category) {
 		hatsCreate.setAttribute('class', 'secondPgEl');
 		hatsCreate.innerHTML = hats;
 		secondPageContainer.appendChild(hatsCreate);
+
 
 		//get the memory and url of this entry and push into the array
 		var memText = thisData[i].memory;
@@ -227,7 +238,7 @@ function secondPage(category) {
 			// imgg.src = "";
 
 			//
-			//set the source to nothing and set the innerHTMl of the mem to nothign 
+			//set the source to nothing and set the innerHTMl of the mem to nothing 
 		}
 
 	}
