@@ -2,29 +2,102 @@
 <html>
 <head>
 	<title>Collection 4</title>
+	<script src = "https://code.jquery.com/jquery-3.3.0.js"></script>
 </head>
 <body>
+	<!-- <div id = "Mmemory"></div> -->
+	<style>
+		#mem1{
+			position: absolute;
+			left: 300px;
+			top:500px;
+			margin:0;
+			padding:0;
+
+		}
+
+		#brand1{ 
+			left: 200px; 
+			top: 300px;
+			margin: 0; 
+			padding: 0;
+		 }
+
+		 #where{ 
+		 }
+
+		img{
+			position:absolute;
+		/*	height: 100;*/
+			width: 95vw;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			justify-content: center;
+			/*left:200px;
+			top:10px;*/
+			z-index: -1;
+		}
+
+		body{ 
+		font-family: arial, sans-serif, bold;
+		font-size: 20px;
+		}
+	</style>
 <script>
-var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/mydata%20(1).json";
+var url = "https://raw.githubusercontent.com/wangt443/ci19/master/studio/collection/csvjson.json";
+
 fetch(url)
 	.then(function(data){return data.json();})
 	.then(function(json){sortData(json);})
 function sortData(json){
 	// console.log(json);
-	var array = json.clothing;
+	var array = json;
 
-	console.log(array);
+	// console.log(array);
+	for(var i = 0; i < array.length; i++){
 
-	//cali is going to be an array
-	//on each element ask .state == "California"
-	var hats = array.filter(function(el){ return el.hat == "Hats"; });
-	var tops = array.filter(function(entry){ return memory == "Tops"; });
-	var bottoms = array.filter(function(a){ return a.memory == "Bottoms"; });
+		var blabla = array.filter(function(su){
+			return su.category == "hats";
+		});
+		console.log(blabla);
 
-	console.log(hats);
-	console.log(bottoms);
-	console.log(tops);
+		var hh = blabla[i].name;
+		var hhCreate = document.createElement("li");
+		hhCreate.innerHTML = hh;
+		document.body.appendChild(hhCreate);
 
+		var mem = document.createElement("h1");
+		document.body.appendChild(mem).setAttribute("id","mem1");;
+
+		var imgg = document.createElement("img");
+		document.body.appendChild(imgg).setAttribute("id","hat1");
+
+		hhCreate.counter = i;
+
+		hhCreate.onmouseover = function(event){
+			mem.innerHTML = blabla[event.target.counter].memory;
+				document.getElementById("hat1").setAttribute("src","https://wangt443.github.io/ci19/studio/collection/hats/1.jpg");
+		}
+
+		hhCreate.onmouseout = function(event){
+			mem.innerHTML = null;
+				document.getElementById("hat1").setAttribute("src","");
+
+		}
+
+	// $("#Mmemory").find("li").hover(
+	// 	function(){
+	// 		console.log("aaaa");
+	// 		// document.getElementById("Mmemory").appendChild
+	// 	},function(){
+	// 		console.log("bbbb");
+	// 	}
+
+	// 	);
+	
+
+	}
 
 //////////////////////////
 
@@ -40,12 +113,11 @@ function sortData(json){
 //   return 0;
 // }
 	// array.sort(function(a,b){
-	// 	if (a.clothing < b.clothing) return -1;
-	// 	if (b.clothing < a.city) return 1;
+	// 	if (a.city < b.city) return -1;
+	// 	if (b.city < a.city) return 1;
 	// 	return 0;
 	// });
 
-	// console.log(array);
 
 }
 </script>
