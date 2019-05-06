@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather Photos</title>
+</head>
+<style>
+	body { 
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size: 20px;
+	display: inline-block;
+	/*flex-wrap: wrap;*/
+
+	 }
+	img{
+		width: 27vw; 
+}
+
+img.picture {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite alternate;
+}
+img.picture {
+    -webkit-animation: mover 1s infinite alternate;
+    animation: mover 1s infinite alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.cityName{
+	display: none;
+}
+
+</style>
+<body>
+	<div id = "Region"><strong>Region:</strong></div>
+	<div id = "NorthAmerica">North America</div>
+	<div id = "Europe">Europe</div>
+	<div id = "Asia">Asia</div>
+
+</div>
+	<img src = "la.jpg" class="picture USA" id = "LAimg">
+	<p1 id="LA">Los Angeles, California</p1>
+	<img src="newyorkcity.jpg" class = "picture USA" id="NYimg">
+	<p1 id="NY">Manhattan, New York City</p1>
+	<img src = "reykjavik.jpg" class = "picture EUR" id = "icelandimg"> 
+	<p1 id = "iceland">Reykjavik, Iceland</p1>
+
+
+	<img src="chicago.jpg" class = "picture USA" id="CGimg">
+	<p1 id="CG">Chicago, Illinois</p1>
+	<img src = "zermatt.jpg" class ="picture EUR">
+	<img src = "taipei.jpg" class = "picture ASIA">
+	<img src = "madrid.jpg" class = "picture EUR">
+	<img src = "pingtung.jpg" class = "picture ASIA">
+</body>
+<script> 
+	var images = document.getElementsByClassName('picture'); 
+	// console.log(images);
+
+
+	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "reykjavik.jpg", "madrid.jpg", "zermatt.jpg", "pingtung.jpg"];
+	var coords =["34.0522,-118.2437", "41.8781, -87.6298","25.0330, 121.5654", "40.7128, -74.0060", "46.0207, -7.7491", "22.520, -120.5488"];
+	var bw = ['apiproject/BWnewyorkcity.jpg', 'apiproject/bwla.jpg'];
+	var saturated =['', '', ''];
+
+
+	for(var i = 0; i < coords.length; i++){
+		var coord = coords[i];
+		var theImage = images[i];
+
+		var url = "https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/"+ coord;
+		callAPI(url, i); 
+
+
+		//fetch the url
+	} 
+
+	// }
+
+function callAPI(url, i) {
+	fetch(url)
+	.then(function(event){return event.json(); })
+	.then(function(json){weather(json, i);});
+
+}
+
+		function weather(data, i){
+
+			var lat = data.latitude;
+			var long = data.longitude;
+			var latAndLong = lat + ","+long;
+
+
+			var img = images[i];
+
+			var windspeed = data.currently.windSpeed;
+			var summary = data.currently.summary;
+
+			// console.log(windspeed, summary);
+
+			if(windspeed<5.4){
+				console.log(img, 'windy');
+				img.style.filter = "blur(5px)"
+			}
+			if(summary=="Mostly Cloudy" || summary=="Cloudy" ){
+				
+				//*************ONCE YOU ADD BW IMAGES uncomment this******************
+				// var newSource = bw[i];
+				// img.src = newSource;
+
+			}
+			if(summary=="Clear"){
+				console.log(img, 'clear');
+				img.style.filter = "saturated(200%)";
+
+				//*************ONCE YOU ADD SAT IMAGES uncomment this******************
+				// var newSource = saturated[i];
+				// img.src = newSource;
+				
+			}
+
+			// var reykjavik = document.getElementById("picture"); 
+
+			// if (windspeed<5.4){ 
+			// 	reykjavik.style.filter ="blur(8px)"
+			// }
+			// if(temperature== 60){ 
+			// 	reykjavik.style.filter = "saturated (200%)"; 
+			// }
+			// // if(summary=="Clear"){
+				// setInterval(function() {
+				// 	sound.load();
+				// }, 100000)
+				
+			}
+
+//EVENT LISTERNS FOR REGIONS
+
+var NorthAmerica = document.getElementById('NorthAmerica');
+NorthAmerica.addEventListener('click', function(e){
+
+	var elems = document.getElementsByClassName('USA');
+	console.log(elems);
+
+	for(i = 0; i < elems.length; i++){
+		var el = elems[i];
+		// el.style.width = "100px";
+	}
+
+});
+
+var Europe = document.getElementById('Europe');
+Europe.addEventListener('click', function(e){
+
+	var usa = document.getElementsByClassName('USA');
+	console.log(usa);
+
+	for(i = 0; i < usa.length; i++){
+		var el = usa[i];
+		el.remove();
+	}
+
+	var asia = document.getElementsByClassName('ASIA');
+	console.log(asia);
+
+	for(i = 0; i < asia.length; i++){
+		var el = asia[i];
+		el.remove();
+	}
+
+});
+
+var Asia = document.getElementById('Asia');
+Asia.addEventListener('click', function(e){
+
+	var elems = document.getElementsByClassName('ASIA');
+	console.log(elems);
+
+	for(i = 0; i < elems.length; i++){
+		var el = elems[i];
+		el.style.width = "100px";
+	}
+
+});
+	document.getElementById("NYimg").addEventListener("mouseover", mouseOver);
+	document.getElementById("NYimg").addEventListener("mouseout", mouseOut);
+
+	function mouseOver() {
+  		document.getElementById("NY").style.opacity = 1;
+	}
+	function mouseOut() {
+  		document.getElementById("NY").style.opacity = 0;
+	}
+
+	document.getElementById("CGimg").addEventListener("mouseover", mouseOver2);
+	document.getElementById("CGimg").addEventListener("mouseout", mouseOut2);
+
+	function mouseOver2() {
+  		document.getElementById("CG").style.opacity = 1;
+	}
+	function mouseOut2() {
+  		document.getElementById("CG").style.opacity = 0;
+	}
+
+	document.getElementById("LAimg").addEventListener("mouseover", mouseOver2);
+	document.getElementById("LAimg").addEventListener("mouseout", mouseOut2);
+
+	function mouseOver2() {
+  		document.getElementById("LA").style.opacity = 1;
+	}
+	function mouseOut2() {
+  		document.getElementById("LA").style.opacity = 0;
+  	}
+
+  	document.getElementById("icelandimg").addEventListener("mouseover", mouseOver2);
+	document.getElementById("icelandimg").addEventListener("mouseout", mouseOut2);
+
+	function mouseOver2() {
+  		document.getElementById("iceland").style.opacity = 1;
+	}
+	function mouseOut2() {
+  		document.getElementById("iceland").style.opacity = 0;
+  	}
+
+// //New York
+// var Ny = document.getElementById('NY');
+// Ny.addEventListener('onmouseover', function(){
+// 	var nyName = document.getElementById('NYName');
+// 	nyName.style.opacity = 1;
+// });
+
+// Ny.addEventListener('mouseleave', function(){
+// 	var nyName = document.getElementById('NYName');
+// 	nyName.style.opacity = 0;
+// });
+
+// var body = document.body;
+// body.onClick=function(){
+// 	body.style.backgroundColor = "#ff0000";
+// };
+//Reykjavik
+// var iceland = document.getElementbyId('icelandname'); 
+// iceland.addEventListener('mouseover', function(){ 
+// 	var icelandName = document.getElementbyId('icelandName'); 
+// 	icelandName.style.opacity = 1; 
+// }); 
+
+// iceland.addEventListener('mouseleave', function(){
+// 	var icelandName = document.getElementById('icelandName');
+// 	icelandName.style.opacity = 0;
+// }
+</script>
+</html>
+
+
+<!-- IF you want to change positioning/styles for the images, add id of the city name and then play with it in your CSS Styles
+
+Change photos to Black and white and saturated and then add them to their arrays in the proper order and uncomment the stuff in cloudy/clear if statements
+
+When you click on the region divs, youre getting an array of the images in that region, change the styles on those to whatever you want (drop shadow etc) -->
+

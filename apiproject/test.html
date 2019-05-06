@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<style>
+	img{
+		width: 30vw;
+	}
+
+</style>
+<body>
+
+<img src="newyorkcity.jpg" id="NYimg">
+<h1 id="NY">new york city</h1>
+
+<img src="chicago.jpg" id="CGimg">
+<h1 id="CG">chicago</h1>
+
+<script>
+
+	document.getElementById("NYimg").addEventListener("mouseover", mouseOver);
+	document.getElementById("NYimg").addEventListener("mouseout", mouseOut);
+
+	function mouseOver() {
+  		document.getElementById("NY").style.opacity = 1;
+	}
+	function mouseOut() {
+  		document.getElementById("NY").style.opacity = 0;
+	}
+
+
+
+
+	document.getElementById("CGimg").addEventListener("mouseover", mouseOver2);
+	document.getElementById("CGimg").addEventListener("mouseout", mouseOut2);
+
+	function mouseOver2() {
+  		document.getElementById("CG").style.opacity = 1;
+	}
+	function mouseOut2() {
+  		document.getElementById("CG").style.opacity = 0;
+	}
+
+
+
+</script>
+
+</body>
+</html>
+
