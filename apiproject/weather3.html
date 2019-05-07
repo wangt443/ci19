@@ -9,9 +9,9 @@
 	var images = document.getElementsByClassName('picture');
 	// console.log(images);
 
-	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 
+	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 'finland.jpg', 
 	];
-	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", 
+	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", "60.1699, 24.9384", 
 	];
  
 	for (var i = 0; i < coords.length; i++) {
@@ -158,7 +158,12 @@
 	// function mouseOut(name) {
 	// 	document.getElementById(name).style.opacity = 0;
 	// }
-	
+	// window.onscroll = function(e) {
+	// 	//console.log(window); 
+	// 	console.log("scroll"); 
+	// 	console.log(window.scrollX, window.innerWidth); 
+	// 	var scale = 0 + (window.scrollX/0); 
+	// }
 </script>
 
 <style>
@@ -198,6 +203,7 @@
 		max-height: 300px;
 		max-width: 300px;
 		object-fit: cover;
+		position: relative;
 	}
 
 	img.picture {
@@ -305,10 +311,12 @@
 				<p1 id = "ithaca" class = "title">Ithaca, New York</p1>
 			</div>
 
+			<div class = "item-container EUR"> 
+				<img src = "finland.jpg" class = "picture"> 
+				<p1 id = "finland" class = "title"> Helsinki, Finland"></p1>
 		</div>
-
 	</div>
-</body>
+</div>
 
 </body>
 
