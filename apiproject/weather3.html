@@ -4,6 +4,161 @@
 <head>
 	<title>Weather Photos</title>
 </head>
+<script>
+	var images = document.getElementsByClassName('picture');
+	// console.log(images);
+
+
+	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 
+	];
+	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", 
+	];
+	var bw = ['apiproject/BWnewyorkcity.jpg', 'apiproject/bwla.jpg'];
+	var saturated = ['', '', ''];
+
+
+	for (var i = 0; i < coords.length; i++) {
+		var coord = coords[i];
+		var theImage = images[i];
+
+		var url = "https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/" + coord;
+		callAPI(url, i);
+
+
+		//fetch the url
+	}
+
+	// }
+
+	function callAPI(url, i) {
+		fetch(url)
+			.then(function (event) {
+				return event.json();
+			})
+			.then(function (json) {
+				weather(json, i);
+			});
+
+	}
+
+	function weather(data, i) {
+
+		var lat = data.latitude;
+		var long = data.longitude;
+		var latAndLong = lat + "," + long;
+
+
+		var img = images[i];
+
+		var windspeed = data.currently.windSpeed;
+		var summary = data.currently.summary;
+
+		// console.log(img, windspeed, summary);
+
+		if (windspeed < 5.4) {
+			console.log(img, 'windy');
+			img.style.filter = "blur(5px)"
+		}
+		if (summary == "Mostly Cloudy" || summary == "Cloudy") {
+			console.log(img, 'cloudy'); 
+			img.style.filter = "grayscale(100%)";
+		}
+		if (summary == "Clear") {
+			console.log(img, 'clear');
+			img.style.filter = "saturate(300%)";
+		}
+		if (temperature < 60) { 
+			console.log(img, 'sunny'); 
+			img.style.filter = "brightness(200%)"; 
+		}
+
+		// var reykjavik = document.getElementById("picture"); 
+
+		// if (windspeed<5.4){ 
+		// 	reykjavik.style.filter ="blur(8px)"
+		// }
+		// if(temperature== 60){ 
+		// 	reykjavik.style.filter = "saturated (200%)"; 
+		// }
+		// // if(summary=="Clear"){
+		// setInterval(function() {
+		// 	sound.load();
+		// }, 100000)
+
+	}
+
+	//EVENT LISTERNS FOR REGIONS
+
+	function regionFilter(regionName){
+
+		var pictures = document.getElementsByClassName('item-container');
+		for (i = 0; i < pictures.length; i++) {
+			var el = pictures[i];
+			// console.log(el);
+			el.style.display = "flex";
+		}
+
+		if (regionName == "ALL"){
+			return 0;
+		}
+
+		var regions = ['USA', 'ASIA', 'EUR'];
+
+		// console.log(regionName);
+
+		regions.forEach(region => {
+			// console.log(region);
+			if (region != regionName){
+				var list = document.getElementsByClassName(region);
+				for (i = 0; i < list.length; i++) {
+					var el = list[i];
+					// console.log(el);
+					el.style.display = "none";
+				}
+			}
+		});
+	}
+
+	function hoverPictures(){
+		var pictures = document.getElementsByClassName('item-container');
+			for (i = 0; i < pictures.length; i++) {
+				// console.log(pictures[i]);
+				var el = pictures[i].getElementsByClassName("title");
+				if (el.length){
+					el = el[0];
+					// console.log(el);
+					el.style.opacity = 0;
+
+					el.addEventListener("mouseover", mouseOver(el), false);
+					el.addEventListener("mouseout", mouseOut(el), false);
+				}
+			}
+	}
+	// hoverPictures();
+
+
+	function mouseOver(el) {
+		// console.log(el);
+		el.style.opacity = 1;
+	}
+	function mouseOut(el) {
+		el.style.opacity = 0;
+	}
+
+	// document.getElementById("NYimg").addEventListener("mouseover", mouseOver("NY"));
+	// document.getElementById("NYimg").addEventListener("mouseout", mouseOut("NY"));
+
+	// function mouseOver(name) {
+	// 	console.log('hello');
+	// 	document.getElementById(name).style.opacity = 1;
+	// }
+	// function mouseOut(name) {
+	// 	document.getElementById(name).style.opacity = 0;
+	// }
+
+	
+</script>
+
 <style>
 	body {
 		font-family: 'IBM Plex Sans', sans-serif;
@@ -162,160 +317,6 @@
 </body>
 
 </body>
-<script>
-	var images = document.getElementsByClassName('picture');
-	// console.log(images);
-
-
-	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 
-	];
-	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", 
-	];
-	var bw = ['apiproject/BWnewyorkcity.jpg', 'apiproject/bwla.jpg'];
-	var saturated = ['', '', ''];
-
-
-	for (var i = 0; i < coords.length; i++) {
-		var coord = coords[i];
-		var theImage = images[i];
-
-		var url = "https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/" + coord;
-		callAPI(url, i);
-
-
-		//fetch the url
-	}
-
-	// }
-
-	function callAPI(url, i) {
-		fetch(url)
-			.then(function (event) {
-				return event.json();
-			})
-			.then(function (json) {
-				weather(json, i);
-			});
-
-	}
-
-	function weather(data, i) {
-
-		var lat = data.latitude;
-		var long = data.longitude;
-		var latAndLong = lat + "," + long;
-
-
-		var img = images[i];
-
-		var windspeed = data.currently.windSpeed;
-		var summary = data.currently.summary;
-
-		// console.log(img, windspeed, summary);
-
-		if (windspeed < 5.4) {
-			console.log(img, 'windy');
-			img.style.filter = "blur(5px)"
-		}
-		if (summary == "Mostly Cloudy" || summary == "Cloudy") {
-			console.log(img, 'cloudy'); 
-			img.style.filter = "grayscale(100%)";
-		}
-		if (summary == "Clear") {
-			console.log(img, 'clear');
-			img.style.filter = "saturate(300%)";
-		}
-		if (temperature < 60) { 
-			console.log(img, 'sunny'); 
-			img.style.filter = "brightness(200%)"; 
-		}
-
-		// var reykjavik = document.getElementById("picture"); 
-
-		// if (windspeed<5.4){ 
-		// 	reykjavik.style.filter ="blur(8px)"
-		// }
-		// if(temperature== 60){ 
-		// 	reykjavik.style.filter = "saturated (200%)"; 
-		// }
-		// // if(summary=="Clear"){
-		// setInterval(function() {
-		// 	sound.load();
-		// }, 100000)
-
-	}
-
-	//EVENT LISTERNS FOR REGIONS
-
-	function regionFilter(regionName){
-
-		var pictures = document.getElementsByClassName('item-container');
-		for (i = 0; i < pictures.length; i++) {
-			var el = pictures[i];
-			// console.log(el);
-			el.style.display = "flex";
-		}
-
-		if (regionName == "ALL"){
-			return 0;
-		}
-
-		var regions = ['USA', 'ASIA', 'EUR'];
-
-		// console.log(regionName);
-
-		regions.forEach(region => {
-			// console.log(region);
-			if (region != regionName){
-				var list = document.getElementsByClassName(region);
-				for (i = 0; i < list.length; i++) {
-					var el = list[i];
-					// console.log(el);
-					el.style.display = "none";
-				}
-			}
-		});
-	}
-
-	function hoverPictures(){
-		var pictures = document.getElementsByClassName('item-container');
-			for (i = 0; i < pictures.length; i++) {
-				// console.log(pictures[i]);
-				var el = pictures[i].getElementsByClassName("title");
-				if (el.length){
-					el = el[0];
-					// console.log(el);
-					el.style.opacity = 0;
-
-					el.addEventListener("mouseover", mouseOver(el), false);
-					el.addEventListener("mouseout", mouseOut(el), false);
-				}
-			}
-	}
-	// hoverPictures();
-
-
-	function mouseOver(el) {
-		// console.log(el);
-		el.style.opacity = 1;
-	}
-	function mouseOut(el) {
-		el.style.opacity = 0;
-	}
-
-	// document.getElementById("NYimg").addEventListener("mouseover", mouseOver("NY"));
-	// document.getElementById("NYimg").addEventListener("mouseout", mouseOut("NY"));
-
-	// function mouseOver(name) {
-	// 	console.log('hello');
-	// 	document.getElementById(name).style.opacity = 1;
-	// }
-	// function mouseOut(name) {
-	// 	document.getElementById(name).style.opacity = 0;
-	// }
-
-	
-</script>
 
 </html>
 
