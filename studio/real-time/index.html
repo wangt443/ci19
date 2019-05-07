@@ -5,20 +5,21 @@
 	<title>Weather Photos</title>
 </head>
 <script>
-
+	var city = 'new york';
 	var images = document.getElementsByClassName('picture');
 	// console.log(images);
 
 	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 'finland.jpg', 
 	];
-	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", "60.1699, 24.9384", 
+	var coords = ["Los Angeles County,us", "Chicago Heights,us", "Taipei,tw", "Manhattan,us", "PingTung,tw", "Madrid,es", "Zermatt,ch", "reykjavik,is", "oslo,", "ithaca,us", "helsinki,fi", 
 	];
- 
+
 	for (var i = 0; i < coords.length; i++) {
 		var coord = coords[i];
 		var theImage = images[i];
 
-		var url = "https://cors.io/?https://api.darksky.net/forecast/56f7fbe4f77e31cda89a37888ff7b703/" + coord;
+		// var url = "http://api.openweathermap.org/data/2.5/weather?q="+ city +",uk&APPID=7c9955804384e9869d7290c64821c218" + coord;
+		var url = "http://api.openweathermap.org/data/2.5/weather?q="+ coord +",uk&APPID=7c9955804384e9869d7290c64821c218";
 		callAPI(url, i);
 
 
@@ -33,24 +34,25 @@
 				return event.json();
 			})
 			.then(function (json) {
-				weather(json, i);
+				// weather(json, i);
+				console.log(json);
 			});
 
 	}
 
 	function weather(data, i) {
 
-		var lat = data.latitude;
+		// city = 'new york';
 		var long = data.longitude;
 		var latAndLong = lat + "," + long;
 
 
 		var img = images[i];
 
-		var windspeed = data.currently.windSpeed;
-		var summary = data.currently.summary;
-		var temperature = data.currently.temperature; 
-		var percipitation = data.currently.percipType; 
+		var windspeed = data.wind.speed;
+		var summary = data.weather.description;
+		var temperature = data.main.temp; 
+		var humidity = data.main.humidity; 
 
 		// console.log(img, windspeed, summary);
 
@@ -70,7 +72,7 @@
 			console.log(img, 'sunny'); 
 			img.style.filter = "brightness(100%)"; 
 		}
-		if (PercipType = "rain") { 
+		if (humidity <50) { 
 			console.log(img, 'rain'); 
 			img.style.filter = "opacity(50%)";
 		}
