@@ -111,6 +111,9 @@
 				<img src="newyorkcity.jpg" class="picture" id="NYimg">
 				<p1 id="NY" class="title">Manhattan, New York</p1>
 			</div>
+			<div class ="item-container EUR">
+				<img src="oslo.jpg" class = "picture" id =osloimg> 
+				<p1 id="oslo" class = "title">Oslo, Norway</p1>
 		</div>
 
 		<div class="row">
@@ -147,6 +150,12 @@
 				<img src="pingtung.jpg" class="picture">
 				<p1 id = "pingtung" class = "title"> PingTung City, Taiwan</p1>
 			</div>
+
+			<div class="item-container USA"> 
+				<img src = "ithaca.jpg" class = "picture">
+				<p1 id = "ithaca" class = "title">Ithaca, New York</p1>
+			</div>
+
 		</div>
 
 	</div>
@@ -158,9 +167,9 @@
 	// console.log(images);
 
 
-	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "reykjavik.jpg", "zermatt.jpg", "pingtung.jpg", "madrid.jpg",
+	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 
 	];
-	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "46.0207, -7.7491", "22.520, -120.5488",
+	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", 
 	];
 	var bw = ['apiproject/BWnewyorkcity.jpg', 'apiproject/bwla.jpg'];
 	var saturated = ['', '', ''];
@@ -215,6 +224,10 @@
 		if (summary == "Clear") {
 			console.log(img, 'clear');
 			img.style.filter = "saturate(300%)";
+		}
+		if (temperature < 60) { 
+			console.log(img, 'sunny'); 
+			img.style.filter = "brightness(200%)"; 
 		}
 
 		// var reykjavik = document.getElementById("picture"); 
