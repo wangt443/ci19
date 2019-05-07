@@ -5,18 +5,15 @@
 	<title>Weather Photos</title>
 </head>
 <script>
+
 	var images = document.getElementsByClassName('picture');
 	// console.log(images);
-
 
 	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 
 	];
 	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "22.520, -120.5488", "40.4168, 3.7038", "46.0207, 7.7491", "64.1466, 21.9426", "59.9139, 10.7522", "42.4440, 76.5019", 
 	];
-	var bw = ['apiproject/BWnewyorkcity.jpg', 'apiproject/bwla.jpg'];
-	var saturated = ['', '', ''];
-
-
+ 
 	for (var i = 0; i < coords.length; i++) {
 		var coord = coords[i];
 		var theImage = images[i];
@@ -52,6 +49,8 @@
 
 		var windspeed = data.currently.windSpeed;
 		var summary = data.currently.summary;
+		var temperature = data.currently.temperature; 
+		var percipitation = data.currently.percipType; 
 
 		// console.log(img, windspeed, summary);
 
@@ -67,9 +66,13 @@
 			console.log(img, 'clear');
 			img.style.filter = "saturate(300%)";
 		}
-		if (temperature < 60) { 
+		if (temperature > 60) { 
 			console.log(img, 'sunny'); 
-			img.style.filter = "brightness(200%)"; 
+			img.style.filter = "brightness(100%)"; 
+		}
+		if (PercipType = "rain") { 
+			console.log(img, 'rain'); 
+			img.style.filter = "opacity(50%)";
 		}
 
 		// var reykjavik = document.getElementById("picture"); 
@@ -129,13 +132,13 @@
 					// console.log(el);
 					el.style.opacity = 0;
 
+
 					el.addEventListener("mouseover", mouseOver(el), false);
 					el.addEventListener("mouseout", mouseOut(el), false);
 				}
 			}
 	}
 	// hoverPictures();
-
 
 	function mouseOver(el) {
 		// console.log(el);
@@ -155,7 +158,6 @@
 	// function mouseOut(name) {
 	// 	document.getElementById(name).style.opacity = 0;
 	// }
-
 	
 </script>
 
@@ -195,6 +197,7 @@
 	img {
 		max-height: 300px;
 		max-width: 300px;
+		object-fit: cover;
 	}
 
 	img.picture {
@@ -234,21 +237,12 @@
 		display: none;
 	}
 
-.NorthAmerica{ 
-	background-image: url(images/northamerica.png);
-  	background-repeat: no-repeat;
-  	background-position: 50% 50%;
-  /* put the height and width of your image here */
-  	height: 50px;
-  	width: 200px;
-  	border: none;
-}
 </style>
 
 <body>
 	<header>
 		<div id="Region"><strong>Region</strong></div>
-		<div id="All" onclick="regionFilter('ALL')">All</button>
+		<div id="All" onclick="regionFilter('ALL')">All</div>
 		<div id="NorthAmerica" onclick="regionFilter('USA')">North America</div>
 		<div id="Europe" onclick="regionFilter('EUR')">Europe</div>
 		<div id="Asia" onclick="regionFilter('ASIA')">Asia</div>
