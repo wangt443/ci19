@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Weather Photos</title>
+</head>
+<style>
+	body {
+		font-family: 'IBM Plex Sans', sans-serif;
+		font-size: 20px;
+		display: inline-block;
+		width: 100%;
+		flex-wrap: wrap;
+
+	}
+
+	header{
+		padding-bottom: 50px;
+	}
+
+	.container{
+		width: 100%;
+		display:flex;
+		flex-direction: column;
+	}
+	.row{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.item-container{
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-bottom: 20px;
+	}
+
+	img {
+		max-height: 300px;
+		max-width: 300px;
+	}
+
+	img.picture {
+		flex: 1;
+	}
+
+	img.picture{
+		-webkit-animation: mover 1s infinite alternate;
+	}
+
+	.title{
+		-webkit-animation: mover 1s infinite alternate;
+		animation: mover 1s infinite alternate;
+	}
+
+	@-webkit-keyframes mover {
+		0% {
+			transform: translateY(0);
+		}
+
+		100% {
+			transform: translateY(-10px);
+		}
+	}
+
+	@keyframes mover {
+		0% {
+			transform: translateY(0);
+		}
+
+		100% {
+			transform: translateY(-10px);
+		}
+	}
+
+	.cityName {
+		display: none;
+	}
+
+.NorthAmerica{ 
+	background-image: url(images/northamerica.png);
+  	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  /* put the height and width of your image here */
+  	height: 50px;
+  	width: 200px;
+  	border: none;
+}
+</style>
+
+<body>
+	<header>
+		<div id="Region"><strong>Region</strong></div>
+		<div id="All" onclick="regionFilter('ALL')">All</button>
+		<div id="NorthAmerica" onclick="regionFilter('USA')">North America</div>
+		<div id="Europe" onclick="regionFilter('EUR')">Europe</div>
+		<div id="Asia" onclick="regionFilter('ASIA')">Asia</div>
+	</header>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="item-container USA">
+				<img src="la.jpg" class="picture" id="LAimg">
+				<p1 id="LA" class="title">Los Angeles, California</p1>
+			</div>
+	
+			<div class="item-container USA">
+				<img src="newyorkcity.jpg" class="picture" id="NYimg">
+				<p1 id="NY" class="title">Manhattan, New York</p1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="item-container EUR">
+				<img src="reykjavik.jpg" class="picture" id="icelandimg">
+				<p1 id="iceland" class="title">Reykjavik, Iceland</p1>
+			</div>
+	
+			<div class="item-container USA">
+				<img src="chicago.jpg" class="picture" id="CGimg">
+				<p1 id="CG" class="title">Chicago, Illinois</p1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="item-container EUR">
+				<img src="zermatt.jpg" class="picture" id="zermattimg">
+				<p1 id="zermatt" class="title">Zermatt, Switzerland</p1>
+			</div>
+	
+			<div class="item-container ASIA">
+				<img src="taipei.jpg" class="picture">
+				<p1 id="taipei" class="title">Taipei, Taiwan</p1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="item-container EUR">
+				<img src="madrid.jpg" class="picture">
+				<p1 id = "madrid" class ="title">Madrid, Spain</p1>
+			</div>
+	
+			<div class="item-container ASIA">
+				<img src="pingtung.jpg" class="picture">
+				<p1 id = "pingtung" class = "title"> PingTung City, Taiwan</p1>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</body>
+<script>
+	var images = document.getElementsByClassName('picture');
+	// console.log(images);
+
+
+	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "reykjavik.jpg", "zermatt.jpg", "pingtung.jpg", "madrid.jpg",
+	];
+	var coords = ["34.0522,-118.2437", "41.8781, -87.6298", "25.0330, 121.5654", "40.7128, -74.0060", "46.0207, -7.7491", "22.520, -120.5488",
+	];
+	var bw = ['apiproject/BWnewyorkcity.jpg', 'apiproject/bwla.jpg'];
+	var saturated = ['', '', ''];
+
+
+	for (var i = 0; i < coords.length; i++) {
+		var coord = coords[i];
+		var theImage = images[i];
+
+		var url = "https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/" + coord;
+		callAPI(url, i);
+
+
+		//fetch the url
+	}
+
+	// }
+
+	function callAPI(url, i) {
+		fetch(url)
+			.then(function (event) {
+				return event.json();
+			})
+			.then(function (json) {
+				weather(json, i);
+			});
+
+	}
+
+	function weather(data, i) {
+
+		var lat = data.latitude;
+		var long = data.longitude;
+		var latAndLong = lat + "," + long;
+
+
+		var img = images[i];
+
+		var windspeed = data.currently.windSpeed;
+		var summary = data.currently.summary;
+
+		// console.log(img, windspeed, summary);
+
+		if (windspeed < 5.4) {
+			console.log(img, 'windy');
+			img.style.filter = "blur(5px)"
+		}
+		if (summary == "Mostly Cloudy" || summary == "Cloudy") {
+			console.log(img, 'cloudy'); 
+			img.style.filter = "grayscale(100%)";
+		}
+		if (summary == "Clear") {
+			console.log(img, 'clear');
+			img.style.filter = "saturate(300%)";
+		}
+
+		// var reykjavik = document.getElementById("picture"); 
+
+		// if (windspeed<5.4){ 
+		// 	reykjavik.style.filter ="blur(8px)"
+		// }
+		// if(temperature== 60){ 
+		// 	reykjavik.style.filter = "saturated (200%)"; 
+		// }
+		// // if(summary=="Clear"){
+		// setInterval(function() {
+		// 	sound.load();
+		// }, 100000)
+
+	}
+
+	//EVENT LISTERNS FOR REGIONS
+
+	function regionFilter(regionName){
+
+		var pictures = document.getElementsByClassName('item-container');
+		for (i = 0; i < pictures.length; i++) {
+			var el = pictures[i];
+			// console.log(el);
+			el.style.display = "flex";
+		}
+
+		if (regionName == "ALL"){
+			return 0;
+		}
+
+		var regions = ['USA', 'ASIA', 'EUR'];
+
+		// console.log(regionName);
+
+		regions.forEach(region => {
+			// console.log(region);
+			if (region != regionName){
+				var list = document.getElementsByClassName(region);
+				for (i = 0; i < list.length; i++) {
+					var el = list[i];
+					// console.log(el);
+					el.style.display = "none";
+				}
+			}
+		});
+	}
+
+	function hoverPictures(){
+		var pictures = document.getElementsByClassName('item-container');
+			for (i = 0; i < pictures.length; i++) {
+				// console.log(pictures[i]);
+				var el = pictures[i].getElementsByClassName("title");
+				if (el.length){
+					el = el[0];
+					// console.log(el);
+					el.style.opacity = 0;
+
+					el.addEventListener("mouseover", mouseOver(el), false);
+					el.addEventListener("mouseout", mouseOut(el), false);
+				}
+			}
+	}
+	// hoverPictures();
+
+
+	function mouseOver(el) {
+		// console.log(el);
+		el.style.opacity = 1;
+	}
+	function mouseOut(el) {
+		el.style.opacity = 0;
+	}
+
+	// document.getElementById("NYimg").addEventListener("mouseover", mouseOver("NY"));
+	// document.getElementById("NYimg").addEventListener("mouseout", mouseOut("NY"));
+
+	// function mouseOver(name) {
+	// 	console.log('hello');
+	// 	document.getElementById(name).style.opacity = 1;
+	// }
+	// function mouseOut(name) {
+	// 	document.getElementById(name).style.opacity = 0;
+	// }
+
+	
+</script>
+
+</html>
+
+
+<!-- IF you want to change positioning/styles for the images, add id of the city name and then play with it in your CSS Styles
+
+Change photos to Black and white and saturated and then add them to their arrays in the proper order and uncomment the stuff in cloudy/clear if statements
+
+When you click on the region divs, youre getting an array of the images in that region, change the styles on those to whatever you want (drop shadow etc) -->
