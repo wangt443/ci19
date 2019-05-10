@@ -27,7 +27,7 @@
 //https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/Taipei,tw
 
 // https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/34.0522,-118.2437
-		var url = "https://cors.io/?https://api.darksky.net/forecast/5822de9b5bcc53af57fac442945085b7/" + coord;
+		var url = "https://cors.io/?https://api.darksky.net/forecast/57e7b3605bbeb6c25fa172910cdc6bfb/" + coord;
 
 		console.log("calling api", url);
 		callAPI(url, i);
@@ -62,9 +62,9 @@
 		var img = images[i];
 
 		var windspeed = data.currently.windSpeed;
-		var summary = data.weather.description;
-		var temperature = data.main.temp; 
-		var humidity = data.main.humidity; 
+		var summary = data.currently.summary;
+		var temperature = data.currently.temperature; 
+		// var humidity = data.currently.humidity; 
 
 		// console.log(img, windspeed, summary);
 
@@ -84,10 +84,10 @@
 			console.log(img, 'sunny'); 
 			img.style.filter = "brightness(100%)"; 
 		}
-		if (humidity <50) { 
-			console.log(img, 'rain'); 
-			img.style.filter = "opacity(50%)";
-		}
+		// if (humidity <50) { 
+		// 	console.log(img, 'rain'); 
+		// 	img.style.filter = "opacity(50%)";
+		// }
 
 		// var reykjavik = document.getElementById("picture"); 
 
@@ -184,10 +184,10 @@
 	body {
 		font-family: 'IBM Plex Sans', sans-serif;
 		font-size: 20px;
-		display: inline-block;
+		display: grid;
 		width: 100%;
-		flex-wrap: wrap;
-
+	/*	grid-template-columns: 200px;
+		grid-template-rows: 200px 200px;*/
 	}
 
 	header{
@@ -202,13 +202,13 @@
 		flex-direction: column;
 	}
 	.row{
-		width: 100%;
+		width: 50%;
 		display: flex;
 		flex-direction: row;
 	}
 
 	.item-container{
-		width: 50%;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -216,11 +216,11 @@
 	}
 
 	img {
-		max-height: 300px;
-		max-width: 300px;
+		max-height: 500px;
+		max-width: 500px;
 		object-fit: cover;
 		position: relative;
-		margin-left: auto;
+	/*	margin-left: 30%;	*/
 	}
 
 	img.picture {
