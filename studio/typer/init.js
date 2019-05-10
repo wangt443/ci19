@@ -67,14 +67,13 @@ function createElement(k) {
   var elem = $('#cursor');
 
   if (k == "a" || k == "A") { 
-  	elem.before('<span class="inner"><video width="320" height="240" autoplay><source src="a.mp4" type="video/mp4"></video></span>');
+  	 elem.before('<span class="inner"><img class="martinique" source src="martinique.png"></span>');
   }
   if (k == "b" || k == "B") { 
   	elem.before('<span class="inner"><img class="blue" src="blue.jpg"></span>'); 
-  	document.body.style.backgroundColor = '#96CBE0';
   }
   if (k == "c" || k == "C") {
-  	elem.before('<span class="inner"><img class="calm" source src="calm.png" </span>');
+  	elem.before('<span class="inner"><img class="calm" source src="calm.jpg" </span>');
   }
   if (k == "d" || k == "D") { 
   	elem.before('<span class="inner"><img class="steps" src="steps.jpg"></span>'); 
@@ -87,13 +86,12 @@ function createElement(k) {
   }
   if (k == "g" || k == "G") { 
   	elem.before('<span class="inner"><img class="green" source src="green.jpg"></span>'); 
-  	elem.before('<span class="inner"><img src="green2.jpg')
   }
   if (k == "h" || k == "H") { 
   	elem.before('<span class="inner"><img class="home" source src="home.jpg"></span>'); 
   }
   if (k == "i" || k == "I") { 
-  	elem.before('<span class="inner"><img class="i" source src="i.jpg" </span>'); 
+  	elem.before('<span class="inner"><img class="i" source src="i.jpg"></span>'); 
  }
   if (k == "j" || k == "J") { 
   	elem.before('<span class="inner"><img class="j" source src = "j.jpg"></span>'); }
@@ -103,12 +101,7 @@ function createElement(k) {
   	elem.before('<span class="inner"><img class="lovely" source src="lovely.jpg"></span>');
   }
   if (k == "m" || k == "M") { 
-  	elem.before('<span class="inner"><img class="martinique" source src="martinique.png"></span>');
-  	// document.body.style.fontFamily = 'helvetica'; 
-  	// document.body.style.color = '#ffffff'
-  	// document.getElementById('immersive').style.left='0px';
-  	// document.getElementById('immersive').style.textAlign='unset';  
-  	// document.body.style.fontSize="30px";
+  	elem.before('<span class="inner"><video width="100" height="100" autoplay><source src="a.mp4" type="video/mp4"></video></span>');
   }
   if (k == "n" || k == "N") { 
   	elem.before('<span class="inner"><img class="green2" source src="green2.jpg"</span>');

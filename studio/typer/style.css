@@ -6,8 +6,7 @@
   50% { opacity: 0; }
 }
 #container {
-/*  background-color: #efefef;
-*/width: 1000px;
+width: 1000px;
 height: 1000px;
   padding: 50px;
   margin: 50px auto;
@@ -34,8 +33,8 @@ height: 1000px;
 	opacity: 0.5;
 }
 .blue{
-	height: 1000px;
-	width: 1000px;
+	height: 300px;
+	width: 300px;
 	border: 1px;
 	margin:10px;
 	position: relative;
@@ -44,58 +43,56 @@ height: 1000px;
 	opacity: 0.5;
 }
 .green{
-	height:1000px;
-	width: 1000px;
+	height:400px;
+	width: 400px;
 	position: absolute;
-	left:800px;
+	left:600px;
 	top:100px;
 	opacity: 0.5;
 }
 .red{ 
-	height: 700px;
-	width: 1000px;
+	height: 35vh;
+	width: 30vw;
 	position: absolute;
-	left:-500px;
+	left:500px;
 	top: 170px;
 	opacity: 0.5;
  }
 
  .white{ 
- 	height: 1000px;
- 	width: 1000px;
+ 	height: 150px;
+ 	width: 150px;
  	position: absolute;
- 	left: -800px;
- 	top: 900px;
+ 	left: 500px;
+ 	top: 40px;
  	opacity: 0.5;
  }
 
  .pink{
- 	height: 1000px;
- 	width: 1000px;
+ 	height: 35vh;
+ 	width: 20vw;
  	position: absolute;
- 	right: 800px;
- 	top: 500px;
+ 	left: 550px;
+ 	bottom: 110px;
  	opacity: 0.5;
  }
 
  .violet { 
- 	height: 1000px;
- 	width: 1000px;
+ 	height: 25vh;
+ 	width: 15vw;
  	position: absolute;
- 	left: 400px;
- 	bottom: -2000px; 
+ 	right: -450px;
+ 	bottom: -190px; 
  	opacity: 0.5;
 
  }
 #video-background {
 /*  making the video fullscreen  */
   position: fixed;
-  right: 0; 
-  bottom: 0;
-  min-width: 100%; 
-  min-height: 100%;
-  width: auto; 
-  height: auto;
+  top: 0; 
+  left: 0;
+  width: 100vw; 
+  height: 100vh;
   z-index: -100;
 }
 
@@ -107,65 +104,66 @@ min-height: 50%;
 top: 70px;
 right: 90px;
 position: absolute;
+opacity: 0.5;
 }
 
 .floral{ 
-height: 2000px;
-width: 1500px;
-top: 600px;
-right: 80px;
+height: 80vh;
+width: 30vw;
+top: 90px;
+right: 30px;
 position: absolute;
 opacity: 0.5;
 }
 
 .trees{ 
-height: 2000px;
-width: 2000px;
-top: 100px;
-right: 10px;
+height: 60vh;
+width: 50vw;
+top: 15q0px;
+left: 400px;
 position: absolute;
 opacity: 0.5;
 }
 
 .steps{ 
-height: 2500px;
-width: 2500px;
+height: 80vh;
+width: 50vw;
 top: 100px;
 right: 80px;
 opacity: 0.5;
 }
 
 .up { 
-height: 700px;
-width: 700px;
-top: 100px;
-right: 40px;
+height: 35vh;
+width: 20vw;
+bottom: -190px;
+right: -300px;
 position: absolute;
 opacity: 0.5;
 }
 
 .home{ 
-height:1000px;
-width: 2000px;
-left: 900px;
-top: 1550px;
+height: 80vh;
+width: 80vw;
+left: 200px;
+top: 50px;
 position: absolute;
 opacity: 0.5;
 }
 
 .end { 
-height: 1200px;
-width: 1900px;
-right: 690px; 
-top: 800px;
+height: 50vh;
+width: 50vw;
+left: 170px; 
+top: 130px;
 position: absolute;
 opacity: 0.5;
 }
 
 video{
 	position: absolute;
-	height: auto; 
-	width: auto;
+	height: 200px; 
+	width: 200px;
 	/*top: 90px;
 	left: 90px;*/
 }
@@ -180,67 +178,68 @@ video-2{
 }
 
 .yellow{ 
-height: 650px;
-width: 650px;
-bottom: -2300px;
+height: 25vh;
+width: 15vw;
+bottom: -100px;
 right: -640px;
 position:absolute;
 opacity: 0.5;
 }
 
 .k{
-	height: 1000px;
-	width: 1000px;
-	top: 80px;
-	left: -2000px;
+	height: 70vh;
+	width: 40vw;
+	top: 60px;
+	left: -100px;
 	position: absolute;
 	opacity: 0.5;
 }
 
 .j{ 
-height: 500px; 
-width: 800px;
-top: 1000px;
-left: -1600px;
+height: 35vh; 
+width: 30vw;
+top: 150px;
+left: 300px;
 position: absolute;
 opacity: 0.5; 
 }
 
 video-3{ 
+	opacity: 0.5;
  }
 
 .martinique{ 
-top: 100px;
-left: -2520px;
-width: auto;
-height: auto;
+top: 0px;
+left: 0px;
+width: 100vw;
+height: 130vh;
 position: absolute;
 }
 
 .quiet{
-	top: 1200px;
-	left: 5px;
-	height: 500px;
-	width: 800px;
-	position:absolute;
+	top: 10px;
+	right: -300px;
+	height: 20vh;
+	width: 17vw;
+	position: absolute;
 	opacity: 0.5;
 }
 
 .lovely{
-top: 500px;
-right: 400px;
-height: 500px;
-width: 850px;
+top: 100px;
+left: 150px;
+height: 50vh;
+width: 50vw;
 position: absolute;
 opacity: 0.5;
 
 }
 
 .green2{ 
-top: 1300px;
-right: 1200px;
-width: 1000px;
-height: 1000px;
+top: -10px;
+right: 10px;
+width: 30vw;
+height: 50vh;
 position: absolute;
 opacity: 0.5;
 }
@@ -248,25 +247,26 @@ opacity: 0.5;
 .calm{ 
 top: 250px;
 right: -290px;
-width: auto;
-height: auto;
+width: 200px;
+height: 130px;
 position: absolute;
+opacity: 0.5;
 }
 
 .nice{
-	top: 200px;
-	right: 200px;
-	width: 300px;
-	height: 0px;
+	top: 100px;
+	right: 100px;
+	width: 50vw;
+	height: 50vh;
 	position: absolute;
 	opacity: 0.5;
 }
 
 .i{ 
- bottom: -1800px;
- right:-550px;
- width: 900px;
- height:700px;
+ top: 60px;
+ right:-200px;
+ width:50vw;
+ height:50vh;
  position: absolute;
  opacity: 0.5;
 }

@@ -11,15 +11,25 @@
 
 	var srcs = ["la.jpg", "chicago.jpg", "taipei.jpg", "newyorkcity.jpg", "pingtung.jpg", "madrid.jpg", "zermatt.jpg", "reykjavik.jpg", "oslo.jpg", "ithaca.jpg", 'finland.jpg', 
 	];
-	var coords = ["Los Angeles County,us", "Chicago Heights,us", "Taipei,tw", "Manhattan,us", "PingTung,tw", "Madrid,es", "Zermatt,ch", "reykjavik,is", "oslo,", "ithaca,us", "helsinki,fi", 
-	];
+	// var coords = ["Los Angeles County,us", "Chicago Heights,us", "Taipei,tw", "Manhattan,us", "PingTung,tw", "Madrid,es", "Zermatt,ch", "reykjavik,is", "oslo,", "ithaca,us", "helsinki,fi" ];
+	var coords = ["34.0522,-118.2437", "41.8781,-87.6298", "25.0330,121.5654", "40.7128,-74.0060", "46.0207,-7.7491", "22.520,-120.5488"];
 
 	for (var i = 0; i < coords.length; i++) {
 		var coord = coords[i];
 		var theImage = images[i];
 
+// // 93387b4a811b466d76ad21d52b723693 stephanie
+// 5822de9b5bcc53af57fac442945085b7
+// https://api.darksky.net/forecast/5822de9b5bcc53af57fac442945085b7/40,-73
+
 		// var url = "http://api.openweathermap.org/data/2.5/weather?q="+ city +",uk&APPID=7c9955804384e9869d7290c64821c218" + coord;
-		var url = "http://api.openweathermap.org/data/2.5/weather?q="+ coord +",uk&APPID=7c9955804384e9869d7290c64821c218";
+
+//https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/Taipei,tw
+
+// https://cors.io/?https://api.darksky.net/forecast/93387b4a811b466d76ad21d52b723693/34.0522,-118.2437
+		var url = "https://cors.io/?https://api.darksky.net/forecast/5822de9b5bcc53af57fac442945085b7/" + coord;
+
+		console.log("calling api", url);
 		callAPI(url, i);
 
 
@@ -34,22 +44,24 @@
 				return event.json();
 			})
 			.then(function (json) {
-				// weather(json, i);
+				weather(json, i);
 				console.log(json);
 			});
 
 	}
 
 	function weather(data, i) {
+		console.log("data", data);
 
 		// city = 'new york';
+		var lat = data.latitude;
 		var long = data.longitude;
 		var latAndLong = lat + "," + long;
 
 
 		var img = images[i];
 
-		var windspeed = data.wind.speed;
+		var windspeed = data.currently.windSpeed;
 		var summary = data.weather.description;
 		var temperature = data.main.temp; 
 		var humidity = data.main.humidity; 
